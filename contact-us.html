@@ -390,7 +390,7 @@
                             </div>
                         </div>
 
-                      <div class="header__right">
+                        <div class="header__right">
                             <div class="header__action d-flex align-items-center">
                                 <!-- <div class="header__btn-wrap align-items-center d-inline-flex">
                                     <div class="rr-header-icon-search">
@@ -443,7 +443,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -481,7 +482,7 @@
 
 
 
-          <section class="contact-us section-space">
+        <section class="contact-us section-space">
             <div class="container">
                 <div class="row mb-minus-30">
                     <div class="col-md-6 col-lg-4">
@@ -523,11 +524,11 @@
             </div>
         </section>
 
-         <section class="contact section-space__bottom">
+        <section class="contact section-space__bottom">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
-                        <div class="contact__from">
+                        <form class="contact__from">
                             <h4 class="title-animation mb-10">Get in touch</h4>
                             <p>Select layout follower boolean editor flows. Scrolling variant move font group variant
                                 layout device share.</p>
@@ -548,13 +549,18 @@
                                         <input name="number" id="number" type="number" placeholder="Phone">
                                     </div>
                                 </div>
-
                                 <div class="col-xl-6">
                                     <div class="contact__form-input-select d-flex flex-column">
-                                        <select name="subject" id="subject" style="display: none;">
-                                            <option value="">Subject</option>
-                                            <option value="order">Event Order</option>
-                                            <option value="objection">Objection</option>
+                                        <select name="subject" id="subject" required>
+                                            <option value="">Select Service *</option>
+                                            <option value="Kitchen">Kitchen</option>
+                                            <option value="Wardrobes">Wardrobes</option>
+                                            <option value="Home Office">Home Office</option>
+                                            <option value="Media Wall">Media Wall</option>
+                                            <option value="Understairs">Understairs</option>
+                                            <option value="Bedroom">Bedroom</option>
+                                            <option value="General Inquiry">General Inquiry</option>
+                                            <option value="Quote Request">Quote Request</option>
                                         </select>
                                     </div>
                                 </div>
@@ -593,7 +599,7 @@
                                     </button>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                     <div class="col-lg-6">
                         <div class="map">
@@ -670,7 +676,7 @@
                                     <h6>Services</h6>
                                 </div>
 
-                                 <ul class="footer-2__resources">
+                                <ul class="footer-2__resources">
                                     <li><a href="beds.html">Beds</a></li>
                                     <li><a href="kitchen.html">Kitchen</a></li>
                                     <li><a href="wardrobes.html">Wardrobes</a></li>
@@ -721,7 +727,7 @@
                             </p>
                         </div>
 
-                         <div class="footer-2__social">
+                        <div class="footer-2__social">
                             <a href="https://www.facebook.com/ennliving" target="_blank">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -797,6 +803,37 @@
     <script src="assets/js/plugins/TextPlugin.min.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/plugins/magiccursor.js"></script>
+    <script>
+document.querySelector(".contact__from").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const data = {
+        name: document.getElementById("lname").value,
+        email: document.getElementById("email").value,
+        number: document.getElementById("number").value,
+        subject: document.getElementById("subject").value,
+        message: document.getElementById("textarea").value
+    };
+
+    fetch("https://script.google.com/macros/s/AKfycbyTS35LSPpVbARXBT23qmD6V_q4rhwKD6ErVmAzqMLsIDmxFwwuhfoRgMbJnH3pbyy3Zw/exec", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then(res => res.json())
+    .then(res => {
+        alert("Form submitted successfully!");
+        document.querySelector(".contact__from").reset();
+    })
+    .catch(err => {
+        alert("Error submitting form");
+        console.error(err);
+    });
+});
+</script>
+
 </body>
 
 </html>
