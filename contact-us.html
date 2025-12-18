@@ -528,7 +528,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
-                        <form class="contact__from">
+                        <form class="contact__from" id="contactForm">
                             <h4 class="title-animation mb-10">Get in touch</h4>
                             <p>Select layout follower boolean editor flows. Scrolling variant move font group variant
                                 layout device share.</p>
@@ -803,36 +803,38 @@
     <script src="assets/js/plugins/TextPlugin.min.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/plugins/magiccursor.js"></script>
+
     <script>
-document.querySelector(".contact__from").addEventListener("submit", function(e) {
-    e.preventDefault();
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("contactForm");
 
-    const data = {
-        name: document.getElementById("lname").value,
-        email: document.getElementById("email").value,
-        number: document.getElementById("number").value,
-        subject: document.getElementById("subject").value,
-        message: document.getElementById("textarea").value
-    };
+            if (!form) {
+                console.error("❌ contactForm not found");
+                return;
+            }
 
-    fetch("https://script.google.com/macros/s/AKfycbyTS35LSPpVbARXBT23qmD6V_q4rhwKD6ErVmAzqMLsIDmxFwwuhfoRgMbJnH3pbyy3Zw/exec", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-    .then(res => res.json())
-    .then(res => {
-        alert("Form submitted successfully!");
-        document.querySelector(".contact__from").reset();
-    })
-    .catch(err => {
-        alert("Error submitting form");
-        console.error(err);
-    });
-});
-</script>
+            form.addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                const formData = new FormData(form);
+
+                fetch("https://script.google.com/macros/s/AKfycbzHS4PrLZ7At_EAOEwC7dswIfiDpzTrkBOIjCTsIqQoZDLOgPLk2jOEIGEGyudsDaT3/exec", {
+                    method: "POST",
+                    body: formData
+                })
+                    .then(res => res.text())
+                    .then(res => {
+                        console.log(res);
+                        alert("Form submitted successfully!");
+                        form.reset();
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        alert("Submission failed");
+                    });
+            });
+        });
+    </script>
 
 </body>
 
