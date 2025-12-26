@@ -6,7 +6,7 @@
     /*-----------------------------------------------------------------------------------
         Template Name: Artima – Modern Architecture & Interior HTML5 Template
         Author: RRDevs
-        Support: https://support.SVM Digital Servicesnet
+        Support: https://support.Enn Living Interiorsnet
         Description: Artima – Modern Architecture & Interior HTML5 Template.
         Version: 1.0
         Developer Github: Rana Ahmmed (https://github.com/mdranaahmed-dev)

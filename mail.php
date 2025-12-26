@@ -52,7 +52,7 @@ class ContactForm {
 
 $recipient = "ahmmedsabbirbd@gmail.com";
 $fromName = "RRDevs";
-$fromEmail = "hellow@SVM Digital Servicesnet";
+$fromEmail = "hellow@Enn Living Interiorsnet";
 
 $contactForm = new ContactForm($recipient, $fromName, $fromEmail);
 
